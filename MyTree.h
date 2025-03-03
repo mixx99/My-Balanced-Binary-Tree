@@ -18,7 +18,7 @@ public:
 		right(nullptr) {}
 	~Tree() 
 	{
-		// TODO
+		delete left; delete right;
 	}
 public:
 
