@@ -1,10 +1,7 @@
 #pragma once
 
-
-
-
 template <typename T> 
-class Tree 
+class Tree final
 {
 private:
 	T root;
@@ -27,7 +24,7 @@ public:
 		return find(value);
 	}
 
-	void insert(const T& value) // check later arguments
+	void insert(const T& value)
 	{
 		if (value < this->root)
 		{
@@ -52,7 +49,6 @@ public:
 		}
 		else if (value == root)
 			return;
-		// if value equal element, nothing to do.
 	}
 	Tree* find(const T& value, Tree* parent = nullptr)
 	{
@@ -89,14 +85,14 @@ public:
 			parent = nullptr;
 			return;
 		}
-		else if (element->right == nullptr || element->left == nullptr)
+		else if ((element->right != nullptr && element->left == nullptr) || (element->right == nullptr && element->left != nullptr))
 		{
 			eraseNodeWithOneChild(parent, element);
 			parent = nullptr;
 			element = nullptr;
 			return;
 		}
-		else if (element->right != nullptr && element->left != nullptr)
+		else
 		{
 			eraseNodeWithTwoChild(element);
 		}
